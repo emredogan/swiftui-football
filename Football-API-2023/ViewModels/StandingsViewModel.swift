@@ -23,18 +23,4 @@ class StandingsViewModel: ObservableObject {
 			print(error)
 		}
 	}
-	
-	func fetchImages(urlString: String) async {
-		let apiService = APIService()
-		do {
-			let fetchedData = try await apiService.fetchImagesData(urlString: urlString)
-			DispatchQueue.main.async {
-				if (fetchedData != nil) {
-					self.images?.append(fetchedData!)
-				}
-			}
-		} catch {
-			print(error)
-		}
-	}
 }

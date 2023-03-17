@@ -7,6 +7,18 @@
 
 import UIKit
 
-class StandingsViewModel: ObservableObject {
-	let image: UIImage?
+class ImageDownloadViewModel: ObservableObject {
+	@Published var image: UIImage? = nil
+	
+	func fetchImage(urlString: String) async {
+		let apiService = APIService()
+		do {
+			let fetchedData = try await apiService.fetchImagesData(urlString: urlString)
+			DispatchQueue.main.async {
+				self.image = fetchedData
+			}
+		} catch {
+			print(error)
+		}
+	}
 }
