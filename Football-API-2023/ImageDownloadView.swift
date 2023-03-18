@@ -20,7 +20,8 @@ struct ImageDownloadView: View {
 		}
 		.onAppear {
 			Task {
-				await imageDownloadViewModel.fetchImage(urlString:urlString)
+//				await imageDownloadViewModel.fetchImage(urlString:urlString)
+				imageDownloadViewModel.setupFetchImagesPublisher(urlString:urlString)
 			}
 		}
     }

@@ -9,18 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
 	@StateObject var viewModel = StandingsViewModel()
-	@State var standings: [Standing]? = nil
     var body: some View {
         VStack {
-			if let standings {
-				List {
-					ForEach(standings, id: \.self.team.id) {standings in
-						HStack {
-							ImageDownloadView(urlString: standings.team.logo)
-							Text(standings.team.name)
-								.font(.largeTitle)
-
-						}
+			List {
+				ForEach(viewModel.standings, id: \.self.team.id) {standings in
+					HStack {
+						ImageDownloadView(urlString: standings.team.logo)
+						Text(standings.team.name)
+							.font(.largeTitle)
 					}
 				}
 			}
@@ -29,8 +25,7 @@ struct ContentView: View {
 		.ignoresSafeArea()
 		.onAppear {
 			Task {
-				await viewModel.fetchData()
-				standings = viewModel.standings
+				//await viewModel.fetchData()
 			}
 		}
     }

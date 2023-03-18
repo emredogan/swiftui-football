@@ -12,7 +12,6 @@
 		63D9520929C3525600D522C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D9520829C3525600D522C6 /* Assets.xcassets */; };
 		63D9520C29C3525600D522C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D9520B29C3525600D522C6 /* Preview Assets.xcassets */; };
 		63D9521329C355AC00D522C6 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9521229C355AC00D522C6 /* StandingsViewModel.swift */; };
-		63D9521529C355B200D522C6 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9521429C355B200D522C6 /* APIService.swift */; };
 		63D9521729C4628000D522C6 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9521629C4628000D522C6 /* ResultModel.swift */; };
 		63D9521929C48C1700D522C6 /* ImageDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9521829C48C1700D522C6 /* ImageDownloadView.swift */; };
 		63D9521E29C490C600D522C6 /* ImageDownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9521D29C490C600D522C6 /* ImageDownloadViewModel.swift */; };
@@ -25,7 +24,6 @@
 		63D9520829C3525600D522C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63D9520B29C3525600D522C6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63D9521229C355AC00D522C6 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
-		63D9521429C355B200D522C6 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		63D9521629C4628000D522C6 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		63D9521829C48C1700D522C6 /* ImageDownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadView.swift; sourceTree = "<group>"; };
 		63D9521D29C490C600D522C6 /* ImageDownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadViewModel.swift; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 				63D9520429C3525500D522C6 /* Football_API_2023App.swift */,
 				63D9520629C3525500D522C6 /* ContentView.swift */,
 				63D9521A29C490A800D522C6 /* ViewModels */,
-				63D9521429C355B200D522C6 /* APIService.swift */,
 				63D9521829C48C1700D522C6 /* ImageDownloadView.swift */,
 				63D9521629C4628000D522C6 /* ResultModel.swift */,
 				63D9520829C3525600D522C6 /* Assets.xcassets */,
@@ -162,7 +159,6 @@
 			files = (
 				63D9521329C355AC00D522C6 /* StandingsViewModel.swift in Sources */,
 				63D9520729C3525500D522C6 /* ContentView.swift in Sources */,
-				63D9521529C355B200D522C6 /* APIService.swift in Sources */,
 				63D9521729C4628000D522C6 /* ResultModel.swift in Sources */,
 				63D9521E29C490C600D522C6 /* ImageDownloadViewModel.swift in Sources */,
 				63D9521929C48C1700D522C6 /* ImageDownloadView.swift in Sources */,
