@@ -15,6 +15,7 @@
 		63D9521729C4628000D522C6 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9521629C4628000D522C6 /* ResultModel.swift */; };
 		63D9521929C48C1700D522C6 /* ImageDownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9521829C48C1700D522C6 /* ImageDownloadView.swift */; };
 		63D9521E29C490C600D522C6 /* ImageDownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9521D29C490C600D522C6 /* ImageDownloadViewModel.swift */; };
+		63D9524329C851D700D522C6 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 63D9524229C851D700D522C6 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63D9524329C851D700D522C6 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +105,9 @@
 			dependencies = (
 			);
 			name = "Football-API-2023";
+			packageProductDependencies = (
+				63D9524229C851D700D522C6 /* SDWebImageSwiftUI */,
+			);
 			productName = "Football-API-2023";
 			productReference = 63D9520129C3525500D522C6 /* Football-API-2023.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +136,9 @@
 				Base,
 			);
 			mainGroup = 63D951F829C3525500D522C6;
+			packageReferences = (
+				63D9524129C851D700D522C6 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 63D9520229C3525500D522C6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -363,6 +371,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		63D9524129C851D700D522C6 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		63D9524229C851D700D522C6 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63D9524129C851D700D522C6 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 63D951F929C3525500D522C6 /* Project object */;
 }

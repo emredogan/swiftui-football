@@ -23,6 +23,11 @@ class ImageDownloadViewModel: ObservableObject {
 		}
 	}
 	
+	func resetImage() {
+		image = nil
+	}
+	
+	// Fetch with async await
 	func fetchImagesData(urlString: String) async throws -> UIImage? {
 		let url = URL(string: urlString)!
 		let request = URLRequest(url: url)
@@ -31,6 +36,7 @@ class ImageDownloadViewModel: ObservableObject {
 		return UIImage(data: data)
 	}
 	
+	// Setup publisher so fetch with combine
 	func setupFetchImagesPublisher(urlString: String) {
 		URLSession.shared.dataTaskPublisher(for: URL(string: urlString)!)
 					.receive(on: DispatchQueue.main)
