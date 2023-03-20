@@ -46,14 +46,36 @@ struct ContentView: View {
 					}
 				}
 			}
-        }
+		}
 		.padding(.top, 20)
+		.onChange(of: dataService, perform: { newValue in
+			handleFetchData(newValue)
+		})
 		.onAppear {
 			Task {
-				//await viewModel.fetchData()
+				handleFetchData()
 			}
 		}
-    }
+	}
+	
+	func handleFetchData(_ newValue: DataService? = nil) {
+		viewModel.standings.removeAll()
+		var newDataService = newValue
+		
+		if newDataService == nil {
+			newDataService = dataService
+		}
+		Task {
+			switch newDataService {
+				case .async:
+					await viewModel.fetchData()
+				case .combine:
+					viewModel.setupFetchDataPublisher()
+				case .none:
+					print("Unknown case")
+			}
+		}
+	}
 }
 
 struct ContentView_Previews: PreviewProvider {

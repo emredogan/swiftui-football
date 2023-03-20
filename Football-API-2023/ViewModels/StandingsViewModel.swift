@@ -24,7 +24,6 @@ class StandingsViewModel: ObservableObject {
 	init() {
 		request = URLRequest(url: url)
 		request.allHTTPHeaderFields = headers
-		setupFetchDataPublisher()
 	}
 
 	func fetchData() async  {
