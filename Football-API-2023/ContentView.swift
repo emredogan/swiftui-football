@@ -25,12 +25,26 @@ struct ContentView: View {
 				}
 			}
 			.padding()
-			List {
-				ForEach(viewModel.standings, id: \.self.team.id) {standings in
-					HStack(spacing: 15) {
-						ImageDownloadView(urlString: standings.team.logo, imageService: viewModel.imageService)
-						Text(standings.team.name)
-							.font(.headline)
+			NavigationStack {
+				List {
+					ForEach(viewModel.standings, id: \.self.team.id) {standings in
+						HStack(spacing: 15) {
+							ImageDownloadView(urlString: standings.team.logo, imageService: viewModel.imageService)
+							NavigationLink(standings.team.name, value: standings)
+						}
+						.navigationDestination(for: Standing.self) { standing in
+							VStack {
+								HStack {
+									ImageDownloadView(urlString: standing.team.logo, imageService: viewModel.imageService)
+									Text(standing.team.name)
+								}
+								Text(standing.description ?? "")
+								Text("Form: \(standing.form)")
+								Text("Goal difference: \(standing.goalsDiff)")
+								Text("Points \(standing.points)")
+							}
+							
+						}
 					}
 				}
 			}

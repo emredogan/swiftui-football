@@ -29,13 +29,16 @@ struct League: Codable {
 }
 
 // MARK: - Standing
-struct Standing: Codable {
+struct Standing: Codable, Hashable {
 	let team: Team
 	let rank: Int
+	let points, goalsDiff: Int
+	let description: String?
+	let form: String
 }
 
 // MARK: - Team
-struct Team: Codable {
+struct Team: Codable, Hashable {
 	let id: Int
 	let name: String
 	let logo: String
