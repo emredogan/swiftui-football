@@ -8,9 +8,12 @@
 import UIKit
 import Combine
 
+@MainActor
 class StandingsViewModel: ObservableObject {
 	@Published var standings: [Standing] = []
 	@Published var images: [UIImage]? = nil
+	@Published var imageService: ImageService = .async
+	@Published var dataService: DataService = .async
 	
 	var request: URLRequest
 	let headers = [
@@ -69,4 +72,35 @@ class StandingsViewModel: ObservableObject {
 		let standings = result.response.first?.league.standings.first
 		return standings
 	}
+	
+	func handleFetchData(_ newValue: DataService? = nil) {
+		standings.removeAll()
+		var newDataService = newValue
+		
+		if newDataService == nil {
+			newDataService = dataService
+		}
+		Task {
+			switch newDataService {
+				case .async:
+					await fetchData()
+				case .combine:
+					setupFetchDataPublisher()
+				case .none:
+					print("Unknown case")
+			}
+		}
+	}
 }
+
+enum ImageService: String, CaseIterable {
+	case async = "async"
+	case combine = "combine"
+	case SDWeb = "SDWeb"
+}
+
+enum DataService: String, CaseIterable {
+	case async = "async"
+	case combine = "combine"
+}
+
