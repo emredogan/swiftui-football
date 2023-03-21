@@ -16,11 +16,9 @@ struct ImageDownloadView: View {
 		ZStack {
 			switch imageService {
 				case .async, .combine:
-					if let image = imageDownloadViewModel.image {
-						Image(uiImage: image)
-							.resizable()
-							.frame(width: 100, height: 100)
-					}
+					Image(uiImage: imageDownloadViewModel.image)
+						.resizable()
+						.frame(width: 100, height: 100)
 				case .SDWeb:
 					WebImage(url: URL(string: urlString))
 						.resizable()
@@ -44,10 +42,10 @@ struct ImageDownloadView: View {
 		Task {
 			switch newService {
 				case .async:
-					imageDownloadViewModel.image = nil
+					imageDownloadViewModel.image =  UIImage(systemName: "heart")!
 					await imageDownloadViewModel.fetchImage(urlString:urlString)
 				case .combine:
-					imageDownloadViewModel.image = nil
+					imageDownloadViewModel.image =  UIImage(systemName: "heart")!
 					imageDownloadViewModel.setupFetchImagesPublisher(urlString:urlString)
 				case .SDWeb:
 					SDImageCache.shared.clearMemory()

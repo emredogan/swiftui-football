@@ -9,7 +9,8 @@ import UIKit
 import Combine
 
 class ImageDownloadViewModel: ObservableObject {
-	@Published var image: UIImage? = nil
+	@Published var image: UIImage = UIImage(systemName: "heart")!
+	private static let cache = NSCache<NSString, UIImage>()
 	var cancellables = Set<AnyCancellable>()
 
 	func fetchImage(urlString: String) async {
@@ -24,16 +25,31 @@ class ImageDownloadViewModel: ObservableObject {
 	}
 	
 	func resetImage() {
-		image = nil
+		image = UIImage(systemName: "heart")!
 	}
 	
-	// Fetch with async await
-	func fetchImagesData(urlString: String) async throws -> UIImage? {
-		let url = URL(string: urlString)!
+	// Fetch with async await. Manual caching implemented.
+	func fetchImagesData(urlString: String) async throws -> UIImage {
+		let url = URL(string: urlString)
+
+		guard let url = url else {
+			throw NetworkError.badURL
+		}
 		let request = URLRequest(url: url)
-		let (data, response) = try await URLSession.shared.data(for: request)
-		guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
-		return UIImage(data: data)
+		
+		// Check in cache
+		if let cachedImage = Self.cache.object(forKey: urlString as NSString) {
+			image = cachedImage
+			return image
+		} else {
+			let (data, response) = try await URLSession.shared.data(for: request)
+			guard let image = UIImage(data: data) else {
+				throw NetworkError.unsupportedImage
+			}
+			guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
+			Self.cache.setObject(image, forKey: urlString as NSString)
+			return image
+		}
 	}
 	
 	// Setup publisher so fetch with combine
@@ -46,13 +62,24 @@ class ImageDownloadViewModel: ObservableObject {
 							response.statusCode >= 200 && response.statusCode < 300 else {
 							throw URLError(.badServerResponse)
 						}
+						
+						guard UIImage(data: data) != nil else {
+							throw NetworkError.unsupportedImage
+						}
 						return data
 					}
 					.sink { completion in
 						print(completion)
 					} receiveValue: { [weak self] data in
-						self?.image = UIImage(data: data)
+						
+						self?.image = UIImage(data: data)!
 					}
 					.store(in: &cancellables)
 	}
+}
+
+enum NetworkError: Error {
+	case badRequest
+	case unsupportedImage
+	case badURL
 }
