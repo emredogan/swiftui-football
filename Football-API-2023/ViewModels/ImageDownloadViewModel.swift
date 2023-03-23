@@ -8,8 +8,9 @@
 import UIKit
 import Combine
 
+@MainActor
 class ImageDownloadViewModel: ObservableObject {
-	@Published var image: UIImage = UIImage(systemName: "heart")!
+	@Published var image: UIImage?
 	private static let cache = NSCache<NSString, UIImage>()
 	var cancellables = Set<AnyCancellable>()
 
@@ -24,10 +25,6 @@ class ImageDownloadViewModel: ObservableObject {
 		}
 	}
 	
-	func resetImage() {
-		image = UIImage(systemName: "heart")!
-	}
-	
 	// Fetch with async await. Manual caching implemented.
 	func fetchImagesData(urlString: String) async throws -> UIImage {
 		let url = URL(string: urlString)
@@ -38,16 +35,15 @@ class ImageDownloadViewModel: ObservableObject {
 		let request = URLRequest(url: url)
 		
 		// Check in cache
-		if let cachedImage = Self.cache.object(forKey: urlString as NSString) {
-			image = cachedImage
-			return image
+		if let cachedImage = ImageDownloadViewModel.cache.object(forKey: urlString as NSString) {
+			return cachedImage
 		} else {
 			let (data, response) = try await URLSession.shared.data(for: request)
 			guard let image = UIImage(data: data) else {
 				throw NetworkError.unsupportedImage
 			}
 			guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
-			Self.cache.setObject(image, forKey: urlString as NSString)
+			ImageDownloadViewModel.cache.setObject(image, forKey: urlString as NSString)
 			return image
 		}
 	}

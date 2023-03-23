@@ -12,19 +12,6 @@ struct ContentView: View {
 	
     var body: some View {
         VStack {
-			HStack {
-				Picker("Choose data service", selection: $viewModel.dataService) {
-					ForEach(DataService.allCases, id: \.self) {
-						Text($0.rawValue)
-					}
-				}
-				Picker("Choose image service", selection: $viewModel.imageService) {
-					ForEach(ImageService.allCases, id: \.self) {
-						Text($0.rawValue)
-					}
-				}
-			}
-			.padding()
 			NavigationStack {
 				List {
 					ForEach(viewModel.standings, id: \.self.team.id) {standings in
@@ -50,14 +37,30 @@ struct ContentView: View {
 			}
 		}
 		.padding(.top, 20)
-		.onChange(of: viewModel.dataService, perform: { newValue in
-			viewModel.handleFetchData(newValue)
-		})
 		.onAppear {
 			Task {
 				viewModel.handleFetchData()
 			}
 		}
+	}
+	
+	var pickerView: some View {
+		HStack {
+			Picker("Choose data service", selection: $viewModel.dataService) {
+				ForEach(DataService.allCases, id: \.self) {
+					Text($0.rawValue)
+				}
+			}
+			Picker("Choose image service", selection: $viewModel.imageService) {
+				ForEach(ImageService.allCases, id: \.self) {
+					Text($0.rawValue)
+				}
+			}
+			Button("x") {
+				// Clear data here
+			}
+		}
+		.padding()
 	}
 }
 

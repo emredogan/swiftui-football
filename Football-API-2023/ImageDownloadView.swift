@@ -16,46 +16,26 @@ struct ImageDownloadView: View {
 		ZStack {
 			switch imageService {
 				case .async, .combine:
-					Image(uiImage: imageDownloadViewModel.image)
-						.resizable()
-						.frame(width: 100, height: 100)
+					if let safeImage = imageDownloadViewModel.image {
+						Image(uiImage: safeImage)
+							.resizable()
+							.frame(width: 100, height: 100)
+					} else {
+						ProgressView()
+					}
+					
 				case .SDWeb:
 					WebImage(url: URL(string: urlString))
 						.resizable()
 						.frame(width: 100, height: 100)
 			}
 		}
-		.onChange(of: imageService, perform: { newValue in
-			triggerDownload(newValue)
-		})
 		.onAppear {
-			triggerDownload()
-		}
-    }
-	
-	func triggerDownload(_ newValue: ImageService? = nil) {
-		var newService  = newValue
-		if newService == nil {
-			newService = imageService
-		}
-		
-		Task {
-			switch newService {
-				case .async:
-					imageDownloadViewModel.image =  UIImage(systemName: "heart")!
-					await imageDownloadViewModel.fetchImage(urlString:urlString)
-				case .combine:
-					imageDownloadViewModel.image =  UIImage(systemName: "heart")!
-					imageDownloadViewModel.setupFetchImagesPublisher(urlString:urlString)
-				case .SDWeb:
-					SDImageCache.shared.clearMemory()
-					SDImageCache.shared.clearDisk()
-					print("Fetch with SDWeb, handled automatically")
-				case .none:
-					print("Unknown case")
+			Task {
+				await imageDownloadViewModel.fetchImage(urlString:urlString)
 			}
 		}
-	}
+    }
 }
 
 struct ImageDownloadView_Previews: PreviewProvider {

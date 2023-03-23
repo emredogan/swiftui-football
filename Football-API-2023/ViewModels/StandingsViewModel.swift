@@ -11,7 +11,6 @@ import Combine
 @MainActor
 class StandingsViewModel: ObservableObject {
 	@Published var standings: [Standing] = []
-	@Published var images: [UIImage]? = nil
 	@Published var imageService: ImageService = .async
 	@Published var dataService: DataService = .async
 	
@@ -74,21 +73,8 @@ class StandingsViewModel: ObservableObject {
 	}
 	
 	func handleFetchData(_ newValue: DataService? = nil) {
-		standings.removeAll()
-		var newDataService = newValue
-		
-		if newDataService == nil {
-			newDataService = dataService
-		}
 		Task {
-			switch newDataService {
-				case .async:
-					await fetchData()
-				case .combine:
-					setupFetchDataPublisher()
-				case .none:
-					print("Unknown case")
-			}
+			await fetchData()
 		}
 	}
 }
