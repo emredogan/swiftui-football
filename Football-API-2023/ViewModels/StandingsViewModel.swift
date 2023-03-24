@@ -13,6 +13,9 @@ class StandingsViewModel: ObservableObject {
 	@Published var standings: [Standing] = []
 	@Published var imageService: ImageService = .async
 	@Published var dataService: DataService = .async
+	@Published var showLogin: Bool = false
+	private var signInOutCancellable: AnyCancellable?
+
 	
 	var request: URLRequest
 	let headers = [
@@ -26,6 +29,19 @@ class StandingsViewModel: ObservableObject {
 	init() {
 		request = URLRequest(url: url)
 		request.allHTTPHeaderFields = headers
+		
+		signInOutCancellable = FireAuth.share.signInOutCommand.sink { completion in
+			switch completion {
+				case .finished: break
+				case .failure(let error): debugPrint(error)
+			}
+		} receiveValue: { [weak self] signInOut in
+			switch signInOut {
+				case .signIn: print("Show sign in ")
+					self?.showLogin = true
+				case .signOut: print("Show sign out")
+			}
+		}
 	}
 
 	func fetchData() async  {

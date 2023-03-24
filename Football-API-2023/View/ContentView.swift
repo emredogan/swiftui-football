@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
 	@StateObject var viewModel = StandingsViewModel()
@@ -19,20 +20,13 @@ struct ContentView: View {
 							ImageDownloadView(urlString: standings.team.logo, imageService: viewModel.imageService)
 							NavigationLink(standings.team.name, value: standings)
 						}
-						.navigationDestination(for: Standing.self) { standing in
-							VStack {
-								HStack {
-									ImageDownloadView(urlString: standing.team.logo, imageService: viewModel.imageService)
-									Text(standing.team.name)
-								}
-								Text(standing.description ?? "")
-								Text("Form: \(standing.form)")
-								Text("Goal difference: \(standing.goalsDiff)")
-								Text("Points \(standing.points)")
-							}
-							
-						}
 					}
+				}
+				.sheet(isPresented: $viewModel.showLogin) {
+					LoginView()
+				}
+				.navigationDestination(for: Standing.self) { standing in
+					DetailView(standing: standing, imageService: viewModel.imageService)
 				}
 			}
 		}

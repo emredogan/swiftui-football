@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct Football_API_2023App: App {
+	// To introduce the new app delegate file that we created
+	@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+	@AppStorage("signIn") var isSignedIn = false
     var body: some Scene {
         WindowGroup {
-            ContentView()
+			if isSignedIn{
+				ContentView()
+			} else {
+				LoginView()
+			}
         }
     }
 }
