@@ -17,7 +17,7 @@ struct ContentView: View {
 				List {
 					ForEach(viewModel.standings, id: \.self.team.id) {standings in
 						HStack(spacing: 15) {
-							ImageDownloadView(urlString: standings.team.logo, imageService: viewModel.imageService)
+							ImageDownloadView(urlString: standings.team.logo)
 							NavigationLink(standings.team.name, value: standings)
 						}
 					}
@@ -26,7 +26,7 @@ struct ContentView: View {
 					LoginView()
 				}
 				.navigationDestination(for: Standing.self) { standing in
-					DetailView(standing: standing, imageService: viewModel.imageService)
+					DetailView(standing: standing)
 				}
 			}
 		}
@@ -36,25 +36,6 @@ struct ContentView: View {
 				viewModel.handleFetchData()
 			}
 		}
-	}
-	
-	var pickerView: some View {
-		HStack {
-			Picker("Choose data service", selection: $viewModel.dataService) {
-				ForEach(DataService.allCases, id: \.self) {
-					Text($0.rawValue)
-				}
-			}
-			Picker("Choose image service", selection: $viewModel.imageService) {
-				ForEach(ImageService.allCases, id: \.self) {
-					Text($0.rawValue)
-				}
-			}
-			Button("x") {
-				// Clear data here
-			}
-		}
-		.padding()
 	}
 }
 

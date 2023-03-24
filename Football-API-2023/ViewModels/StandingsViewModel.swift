@@ -11,8 +11,6 @@ import Combine
 @MainActor
 class StandingsViewModel: ObservableObject {
 	@Published var standings: [Standing] = []
-	@Published var imageService: ImageService = .async
-	@Published var dataService: DataService = .async
 	@Published var showLogin: Bool = false
 	private var signInOutCancellable: AnyCancellable?
 
@@ -57,29 +55,6 @@ class StandingsViewModel: ObservableObject {
 		}
 	}
 	
-	func setupFetchDataPublisher() {
-		URLSession.shared.dataTaskPublisher(for: request)
-					.receive(on: DispatchQueue.main)
-					.tryMap { (data, response) -> Data in
-						guard
-							let response = response as? HTTPURLResponse,
-							response.statusCode >= 200 && response.statusCode < 300 else {
-							throw URLError(.badServerResponse)
-						}
-						return data
-					}
-					.decode(type: Welcome.self, decoder: JSONDecoder())
-					.sink { completion in
-						print(completion)
-					} receiveValue: { [weak self] welcome in
-						
-						let standings = welcome.response.first?.league.standings.first
-						if let standings {
-							self?.standings = standings
-						}
-					}
-					.store(in: &cancellables)
-	}
 	
 	func fetchLeagueData() async throws -> [Standing]? {
 		let (data, _) = try await URLSession.shared.data(for: request)
@@ -88,21 +63,10 @@ class StandingsViewModel: ObservableObject {
 		return standings
 	}
 	
-	func handleFetchData(_ newValue: DataService? = nil) {
+	func handleFetchData() {
 		Task {
 			await fetchData()
 		}
 	}
-}
-
-enum ImageService: String, CaseIterable {
-	case async = "async"
-	case combine = "combine"
-	case SDWeb = "SDWeb"
-}
-
-enum DataService: String, CaseIterable {
-	case async = "async"
-	case combine = "combine"
 }
 

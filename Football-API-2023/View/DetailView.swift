@@ -9,11 +9,10 @@ import SwiftUI
 
 struct DetailView: View {
 	let standing: Standing
-	let imageService: ImageService
     var body: some View {
 		VStack {
 			HStack {
-				ImageDownloadView(urlString: standing.team.logo, imageService: imageService)
+				ImageDownloadView(urlString: standing.team.logo)
 				Text(standing.team.name)
 			}
 			Text(standing.description ?? "")
@@ -29,6 +28,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-		DetailView(standing: Standing(team: Team(id: 1, name: "Galatasaray", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Galatasaray_Sports_Club_Logo.svg/1565px-Galatasaray_Sports_Club_Logo.svg.png"), rank: 1, points: 11, goalsDiff: 1, description: nil, form: "WWWWW"), imageService: .async)
+		DetailView(standing: Standing(team: Team(id: 1, name: "Galatasaray", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Galatasaray_Sports_Club_Logo.svg/1565px-Galatasaray_Sports_Club_Logo.svg.png"), rank: 1, points: 11, goalsDiff: 1, description: nil, form: "WWWWW"))
     }
 }

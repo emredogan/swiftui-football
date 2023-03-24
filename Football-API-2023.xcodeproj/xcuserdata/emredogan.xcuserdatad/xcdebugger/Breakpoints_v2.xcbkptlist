@@ -20,5 +20,131 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46801EA6-66D2-4B93-9F64-9D7977564F38"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Football-API-2023/ViewModels/StandingsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "fetchData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "46801EA6-66D2-4B93-9F64-9D7977564F38 - 6e9b1a270fe8eea8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Football_API_2023.StandingsViewModel.fetchData() async -&gt; ()"
+                  moduleName = "Football-API-2023"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emredogan/Desktop/test_apps/Football-API-2023/Football-API-2023/ViewModels/StandingsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "46801EA6-66D2-4B93-9F64-9D7977564F38 - fbccb582bdfe7671"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for Football_API_2023.StandingsViewModel.fetchData() async -&gt; ()"
+                  moduleName = "Football-API-2023"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emredogan/Desktop/test_apps/Football-API-2023/Football-API-2023/ViewModels/StandingsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "46801EA6-66D2-4B93-9F64-9D7977564F38 - 153cced0ecb1030"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Football_API_2023.StandingsViewModel.fetchData() async -&gt; ()"
+                  moduleName = "Football-API-2023"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emredogan/Desktop/test_apps/Football-API-2023/Football-API-2023/ViewModels/StandingsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E3A1B47-5DC3-4C2B-9E0D-D70A67A79EFD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Football-API-2023/View/ImageDownloadView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "8E3A1B47-5DC3-4C2B-9E0D-D70A67A79EFD - 59125fb10ea1014b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #2 () -&gt; () in Football_API_2023.ImageDownloadView.body.getter : some"
+                  moduleName = "Football-API-2023"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emredogan/Desktop/test_apps/Football-API-2023/Football-API-2023/View/ImageDownloadView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "8E3A1B47-5DC3-4C2B-9E0D-D70A67A79EFD - 8ff14c2ef3c8434b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #2 () -&gt; () in Football_API_2023.ImageDownloadView.body.getter : some"
+                  moduleName = "Football-API-2023"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emredogan/Desktop/test_apps/Football-API-2023/Football-API-2023/View/ImageDownloadView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "8E3A1B47-5DC3-4C2B-9E0D-D70A67A79EFD - 84ef345288ca454d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #2 () -&gt; () in Football_API_2023.ImageDownloadView.body.getter : some"
+                  moduleName = "Football-API-2023"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emredogan/Desktop/test_apps/Football-API-2023/Football-API-2023/View/ImageDownloadView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
